@@ -6,9 +6,6 @@ This script parses USB PD specification PDF files and extracts:
 2. All sections and subsections
 3. Generates structured JSONL output files
 4. Creates validation reports in Excel format
-
-Author: AI Assistant
-Date: August 2025
 """
 
 import re
@@ -436,3 +433,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

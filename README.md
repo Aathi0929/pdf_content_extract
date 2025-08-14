@@ -75,20 +75,6 @@ Each line in the JSONL files contains a section object with these fields:
 | `doc_title` | string | Document name/version |
 | `tags` | array | Semantic tags for content categorization |
 
-### Sample JSONL Entry
-
-```json
-{
-  "doc_title": "USB Power Delivery Specification Rev 3.1",
-  "section_id": "2.1.2",
-  "title": "Power Delivery Contract Negotiation",
-  "page": 53,
-  "level": 3,
-  "parent_id": "2.1",
-  "full_path": "2.1.2 Power Delivery Contract Negotiation",
-  "tags": ["contracts", "negotiation", "power"]
-}
-```
 
 ##  Supported Section Patterns
 
@@ -107,64 +93,7 @@ The Excel validation report includes:
 - **All Sections**: All parsed sections from document
 - **Mismatches**: Sections missing or extra in parsing
 
-### Validation Metrics
 
-- Total ToC sections vs total parsed sections
-- Sections found in both ToC and document
-- Sections only in ToC (missing from parsing)
-- Sections only in parsed output (extra detections)
-- Level distribution analysis
-
-##  Semantic Tagging
-
-The system automatically generates tags based on section titles:
-
-| Keywords | Generated Tags |
-|----------|----------------|
-| power | ["power"] |
-| contract, negotiation | ["contracts", "negotiation"] |
-| communication | ["communication"] |
-| cable | ["cable"] |
-| device | ["devices"] |
-| protocol | ["protocol"] |
-| state | ["state-machine"] |
-| sop | ["sop"] |
-
-##  Advanced Usage
-
-### Programmatic Usage
-
-```python
-from usb_pd_parser import USBPDParser
-
-# Initialize parser
-parser = USBPDParser("usb_pd_spec.pdf")
-
-# Process PDF
-parser.process_pdf("usb_pd_spec.pdf")
-
-# Access extracted data
-toc_sections = parser.toc_sections
-all_sections = parser.sections
-```
-
-### Custom Section Detection
-
-You can extend the parser by modifying the regex patterns:
-
-```python
-parser.section_patterns.append(r'your_custom_pattern')
-```
-
-## Configuration
-
-### Logging Level
-
-Modify the logging level in the script:
-
-```python
-logging.basicConfig(level=logging.DEBUG)  # For verbose output
-```
 
 ### Processing Parameters
 
@@ -188,8 +117,7 @@ Run the demo to verify installation:
 ```bash
 python demo.py
 ```
-
-Expected output:
+ output:
 ```
  Sample data files created:
 - sample_usb_pd_toc.jsonl
@@ -201,14 +129,6 @@ Level: 3, Parent: 2.1
 Tags: ['contracts', 'negotiation']
 ```
 
-##  Contributing
-
-To enhance the parser:
-
-1. **Add new patterns**: Extend `section_patterns` list
-2. **Improve tagging**: Modify `_generate_tags()` method
-3. **Add validation rules**: Enhance `generate_validation_report()`
-4. **Handle edge cases**: Update error handling logic
 
 ##  Dependencies
 
@@ -220,7 +140,7 @@ To enhance the parser:
 - **regex**: Advanced pattern matching
 - **tqdm**: Progress bar display
 
-##  Troubleshooting
+
 
 ### Common Issues
 
@@ -229,14 +149,7 @@ To enhance the parser:
 3. **"Pattern not matching"**: PDF may use different ToC format
 4. **"Memory errors"**: Large PDFs may need processing optimization
 
-### Debug Mode
 
-Enable verbose logging:
-
-```python
-import logging
-logging.getLogger('usb_pd_parser').setLevel(logging.DEBUG)
-```
 
 ##  Performance
 
@@ -256,5 +169,6 @@ For questions or issues:
 - Check logs for detailed error information
 - Verify PDF text is extractable (not scanned images)
 - Ensure all dependencies are installed correctly
+
 
 

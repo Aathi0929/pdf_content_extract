@@ -137,7 +137,7 @@ class ParserValidator:
     
     def generate_comprehensive_report(self, toc_file: str, spec_file: str, output_file: str = 'comprehensive_validation_report.xlsx'):
         """Generate comprehensive validation report"""
-        print("🔍 Generating comprehensive validation report...")
+        print(" Generating comprehensive validation report...")
         
         # Schema validation
         toc_schema_validation = self.validate_jsonl_schema(toc_file)
@@ -188,11 +188,11 @@ class ParserValidator:
             if all_errors:
                 pd.DataFrame(all_errors).to_excel(writer, sheet_name='Detailed Errors', index=False)
         
-        print(f"✅ Comprehensive validation report saved to {output_file}")
+        print(f" Comprehensive validation report saved to {output_file}")
 
 def analyze_parsing_coverage(toc_file: str, spec_file: str):
     """Analyze parsing coverage between ToC and full document"""
-    print("📊 Analyzing parsing coverage...")
+    print(" Analyzing parsing coverage...")
     
     try:
         # Load data
@@ -214,7 +214,7 @@ def analyze_parsing_coverage(toc_file: str, spec_file: str):
         
         coverage_percentage = (common / total_toc * 100) if total_toc > 0 else 0
         
-        print(f"📈 Coverage Analysis Results:")
+        print(f" Coverage Analysis Results:")
         print(f"   ToC sections: {total_toc}")
         print(f"   Spec sections: {total_spec}")
         print(f"   Common sections: {common}")
@@ -223,17 +223,17 @@ def analyze_parsing_coverage(toc_file: str, spec_file: str):
         print(f"   Coverage: {coverage_percentage:.1f}%")
         
         if toc_only > 0:
-            print(f"\n⚠️  {toc_only} sections found in ToC but not in full document parsing")
+            print(f"\n⚠  {toc_only} sections found in ToC but not in full document parsing")
         
         if spec_only > 0:
-            print(f"⚠️  {spec_only} sections found in full document but not in ToC")
+            print(f"  {spec_only} sections found in full document but not in ToC")
     
     except Exception as e:
-        print(f"❌ Error analyzing coverage: {e}")
+        print(f" Error analyzing coverage: {e}")
 
 def create_sample_test_data():
     """Create sample test data for validation"""
-    print("🧪 Creating sample test data...")
+    print(" Creating sample test data...")
     
     # Create a sample with intentional errors for testing
     test_data = [
@@ -285,7 +285,7 @@ def create_sample_test_data():
         for record in test_data:
             writer.write(record)
     
-    print("✅ Sample test data created: test_data.jsonl")
+    print(" Sample test data created: test_data.jsonl")
 
 def main():
     """Main function for utility script"""
@@ -308,16 +308,16 @@ def main():
         if Path(args.toc_file).exists() and Path(args.spec_file).exists():
             validator.generate_comprehensive_report(args.toc_file, args.spec_file)
         else:
-            print("❌ JSONL files not found. Run parser first or use --test-data to create sample data.")
+            print(" JSONL files not found. Run parser first or use --test-data to create sample data.")
     
     if args.coverage:
         if Path(args.toc_file).exists() and Path(args.spec_file).exists():
             analyze_parsing_coverage(args.toc_file, args.spec_file)
         else:
-            print("❌ JSONL files not found. Run parser first.")
+            print(" JSONL files not found. Run parser first.")
     
     if not any([args.validate, args.coverage, args.test_data]):
-        print("🛠️  USB PD Parser Utilities")
+        print("  USB PD Parser Utilities")
         print("Usage:")
         print("  --validate: Run validation tests")
         print("  --coverage: Analyze parsing coverage")
@@ -325,3 +325,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

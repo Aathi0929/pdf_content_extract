@@ -420,7 +420,7 @@ def main():
         pdf_parser = USBPDParser(args.pdf_file)
         pdf_parser.process_pdf(args.pdf_file)
         
-        print("\n✅ Processing completed successfully!")
+        print("\n Processing completed successfully!")
         print("Generated files:")
         print("- usb_pd_toc.jsonl (Table of Contents)")
         print("- usb_pd_spec.jsonl (All sections)")
@@ -429,8 +429,9 @@ def main():
         
     except Exception as e:
         logger.error(f"Error processing PDF: {e}")
-        print(f"\n❌ Error: {e}")
+        print(f"\n Error: {e}")
 
 if __name__ == "__main__":
     main()
+
 
